@@ -29,9 +29,10 @@ public:
 		{
 		ptrmulArr[i]=ptrcoefArr[i]*x^i;
 		Sum+=ptrmulArr[i];
-		return Sum;
-		}
 
+		}
+		
+		return Sum;
 	}
 
 
