@@ -1,0 +1,2 @@
+# polynom
+Polynom study code
