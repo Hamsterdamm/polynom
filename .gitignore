@@ -6,6 +6,7 @@
 *.suo
 *.db
 *.vcxproj
-*.filters
-*.user
+*.vcxproj.filters
+*.vcxproj.user
 *.VC.VC.opendb
+/.vs/
