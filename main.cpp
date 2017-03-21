@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 
 
 //описываем класс Полином
@@ -8,7 +9,7 @@ class Polynom
 		size_t number;
 		float Sum; //переменные для размерности полинома и значения суммы
 		int* ptrcoefArr; //указатель на массив коэффициентов
-		int* ptrmulArr; //указатель на массив членов полинома
+
 
 	public:
 		Polynom (int N) //конструктор
@@ -25,14 +26,12 @@ class Polynom
 
 		float CalcSum(int x) //считаем сумму
 		{
-			ptrmulArr=new int [number]; //создаем пустой массив членов полинома
-
 			Sum=0;
 
 			for (size_t i=0; i<number; i++) //заполняем пустой массив членов полинома
 			{
-			ptrmulArr[i]=ptrcoefArr[i]*x^i;
-			Sum+=ptrmulArr[i]; //считаем сумму
+			Sum+= ptrcoefArr[i] * std::pow(x,i); //считаем сумму
+			
 			}
 		
 			return Sum;
