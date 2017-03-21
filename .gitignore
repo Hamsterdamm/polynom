@@ -1,3 +1,11 @@
 /Debug/
 /ipch/
 *.opensdf
+*.sdf
+*.sln
+*.suo
+*.db
+*.vcxproj
+*.filters
+*.user
+*.VC.VC.opendb
