@@ -24,6 +24,11 @@ class Polynom
 			}
 		}
 
+		~Polynom()
+		{
+			delete[] ptrcoefArr;
+		}
+
 		float CalcSum(int x) //считаем сумму
 		{
 			Sum=0;
