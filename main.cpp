@@ -1,43 +1,41 @@
 #include <iostream>
 
+
+//описываем класс Полином
 class Polynom
 {
-private:
-	int number, Sum;
-	int* ptrcoefArr;
-	int* ptrmulArr;
+	private: 
+		int number, Sum; //переменные для размерности полинома и значения суммы
+		int* ptrcoefArr; //указатель на массив коэффициентов
+		int* ptrmulArr; //указатель на массив членов полинома
 
-public:
-	Polynom (int N)
-	{
-		number=N;
-		ptrcoefArr=new int [number];
-		for (int i= 0; i<number; i++)
+	public:
+		Polynom (int N) //конструктор
 		{
-			std::cout<<"Введите коэффициент A"<<i<<std::endl;
-			std::cin>>ptrcoefArr[i];
+			number=N;
+			ptrcoefArr=new int [number]; //создаем пустой массив коэффициентов
+
+			for (int i= 0; i<number; i++) //заполняем пустой массив коэффициентов
+			{
+				std::cout<<"Введите коэффициент A"<<i<<std::endl;
+				std::cin>>ptrcoefArr[i];
+			}
 		}
-		
-	}
 
-	int CalcSum(int x)
-	{
-		ptrmulArr=new int [number];
-		Sum=0;
-
-		for (int i=0; i<number; i++)
+		int CalcSum(int x) //считаем сумму
 		{
-		ptrmulArr[i]=ptrcoefArr[i]*x^i;
-		Sum+=ptrmulArr[i];
+			ptrmulArr=new int [number]; //создаем пустой массив членов полинома
 
-		}
+			Sum=0;
+
+			for (int i=0; i<number; i++) //заполняем пустой массив членов полинома
+			{
+			ptrmulArr[i]=ptrcoefArr[i]*x^i;
+			Sum+=ptrmulArr[i]; //считаем сумму
+			}
 		
-		return Sum;
-	}
-
-
-
-
+			return Sum;
+		}
 };
 
 int main ()
@@ -45,18 +43,18 @@ int main ()
 
 	int N, x, SUM;
 
-
 	std::cout<<"Введите размерность полинома N:"<<std::endl;
-	std::cin>>N;
+	std::cin>>N; //задаем размерность полинома
 	
-	Polynom P = Polynom(N);
+	Polynom P = Polynom(N); //создаем объект класса Полином
+
 	std::cout<<"Введите значение переменной X"<<std::endl;
-	std::cin>>x;
+	std::cin>>x; //вводим значение переменной X
+
 	SUM=P.CalcSum(x);
 
-	std::cout<<"Сумма полинома: "<<SUM<<std::endl;
+	std::cout<<"Сумма полинома: "<<SUM<<std::endl; //вывод значения суммы
 
 	system("pause");
-
 	return 0;
 }
