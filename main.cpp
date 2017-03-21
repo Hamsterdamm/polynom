@@ -12,9 +12,8 @@ class Polynom
 
 
 	public:
-		Polynom (int N) //конструктор
+		Polynom (int N):number(N)//конструктор
 		{
-			number=N;
 			ptrcoefArr=new int [number]; //создаем пустой массив коэффициентов
 
 			for (size_t i= 0; i<number; i++) //заполняем пустой массив коэффициентов
@@ -26,7 +25,8 @@ class Polynom
 
 		~Polynom()
 		{
-			delete[] ptrcoefArr;
+			if (ptrcoefArr!= nullptr)
+				delete[] ptrcoefArr;
 		}
 
 		float CalcSum(int x) //считаем сумму
