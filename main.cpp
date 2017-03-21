@@ -5,7 +5,8 @@
 class Polynom
 {
 	private: 
-		int number, Sum; //переменные для размерности полинома и значения суммы
+		size_t number;
+		float Sum; //переменные для размерности полинома и значения суммы
 		int* ptrcoefArr; //указатель на массив коэффициентов
 		int* ptrmulArr; //указатель на массив членов полинома
 
@@ -15,20 +16,20 @@ class Polynom
 			number=N;
 			ptrcoefArr=new int [number]; //создаем пустой массив коэффициентов
 
-			for (int i= 0; i<number; i++) //заполняем пустой массив коэффициентов
+			for (size_t i= 0; i<number; i++) //заполняем пустой массив коэффициентов
 			{
 				std::cout<<"Введите коэффициент A"<<i<<std::endl;
 				std::cin>>ptrcoefArr[i];
 			}
 		}
 
-		int CalcSum(int x) //считаем сумму
+		float CalcSum(int x) //считаем сумму
 		{
 			ptrmulArr=new int [number]; //создаем пустой массив членов полинома
 
 			Sum=0;
 
-			for (int i=0; i<number; i++) //заполняем пустой массив членов полинома
+			for (size_t i=0; i<number; i++) //заполняем пустой массив членов полинома
 			{
 			ptrmulArr[i]=ptrcoefArr[i]*x^i;
 			Sum+=ptrmulArr[i]; //считаем сумму
@@ -41,7 +42,8 @@ class Polynom
 int main ()
 {
 
-	int N, x, SUM;
+	int N, x;
+	float SUM;
 
 	std::cout<<"Введите размерность полинома N:"<<std::endl;
 	std::cin>>N; //задаем размерность полинома
