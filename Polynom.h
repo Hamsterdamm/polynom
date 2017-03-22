@@ -1,6 +1,8 @@
 #ifndef _POLYNOM_H_
 #define _POLYNOM_H_
 
+double* ptrcoefSumArr;
+
 class Polynom
 {
 	private: 

@@ -40,6 +40,30 @@ double Polynom::operator ()(double x) //считаем сумму
 	return Sum;
 }
 
+Polynom Polynom::operator +(const Polynom& P) 
+{
+
+	ptrcoefSumArr=new double [number]; //создаем пустой массив коэффициентов
+
+	for (size_t i= 0; i<number; i++) //заполняем массив коэффициентов
+	{
+		ptrcoefSumArr[i]=ptrcoefArr[i] /*+ P[](i)*/;
+	}
+
+	Polynom Diff = Polynom(number, ptrcoefDiffArr);
+
+	if (ptrcoefSumArr!= nullptr)
+	delete[] ptrcoefSumArr;
+
+	return Diff;
+
+
+}
+
+		//Polynom operator -(const Polynom& P); 
+		//Polynom operator *(const Polynom& P); 
+
+
 Polynom Polynom::diff()
 {
 	size_t num(number);
