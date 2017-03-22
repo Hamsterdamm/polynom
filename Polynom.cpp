@@ -6,6 +6,8 @@
 
 Polynom::Polynom (){}//конструктор
 
+Polynom::Polynom(const Polynom& P):number(P.number), ptrcoefArr(nullptr) {}
+
 Polynom::Polynom (size_t N):number(N)//конструктор
 {
 	ptrcoefArr=new double [number]; //создаем пустой массив коэффициентов
@@ -17,7 +19,7 @@ Polynom::Polynom (size_t N):number(N)//конструктор
 	}
 }
 
-Polynom::Polynom (size_t N, double* ptrcoefDiffArr):number(N),ptrcoefArr(ptrcoefDiffArr)//конструктор для производной
+Polynom::Polynom (size_t N, double* ptrArr):number(N),ptrcoefArr(ptrArr)//конструктор для производной
 {
 }
 
@@ -51,9 +53,6 @@ Polynom Polynom::operator +(const Polynom& P)
 	}
 
 	Polynom Sum = Polynom(number, ptrcoefSumArr);
-
-	if (ptrcoefSumArr!= nullptr)
-	delete[] ptrcoefSumArr;
 
 	return Sum;
 }
