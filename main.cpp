@@ -5,8 +5,8 @@
 int main ()
 {
 	size_t N;
-	float x;
-	float SUM;
+	double x;
+	double SUM;
 
 	std::cout<<"¬ведите размерность полинома N:"<<std::endl;
 	std::cin>>N; //задаем размерность полинома
@@ -16,7 +16,7 @@ int main ()
 	std::cout<<"¬ведите значение переменной X"<<std::endl;
 	std::cin>>x; //вводим значение переменной X
 
-	SUM=P.FuncAtX(x);
+	SUM=P(x);
 
 	std::cout<<"—умма полинома: "<<SUM<<std::endl; //вывод значени€ суммы
 

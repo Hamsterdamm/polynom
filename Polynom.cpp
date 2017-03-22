@@ -23,13 +23,13 @@ Polynom::~Polynom()
 		delete[] ptrcoefArr;
 }
 
-float Polynom::FuncAtX(float x) //считаем сумму
+float Polynom::operator ()(double x) //считаем сумму
 {
 	Sum=0;
 
-	for (int i=0; i<number; i++) //заполняем пустой массив членов полинома
+	for (size_t i=0; i<number; i++) //заполняем пустой массив членов полинома
 	{
-	Sum+= ptrcoefArr[i] * pow(x,i); //считаем сумму
+	Sum+= ptrcoefArr[i] * pow(x,static_cast<double>(i)); //считаем сумму
 			
 	}
 		

@@ -5,18 +5,18 @@ class Polynom
 {
 	private: 
 		size_t number;
-		float Sum; //переменные для размерности полинома и значения суммы
+		double Sum; //переменные для размерности полинома и значения суммы
 		int* ptrcoefArr; //указатель на массив коэффициентов
 
 	public:
 		Polynom();//конструктор
 		Polynom (size_t N); //конструктор
 		~Polynom();//деструктор
-		float operator ()(float x); //значение в точке
+		float operator ()(double x); //значение в точке
 		float operator [](size_t i); 
-		float operator +(float left,float right); 
-		float operator -(float left,float right); 
-		float operator *(float left,float right);
+		/*float operator +(double left,double right); 
+		float operator -(double left,double right); 
+		float operator *(double left,double right);*/
 };
 
 #endif //_POLYNOM_H_
