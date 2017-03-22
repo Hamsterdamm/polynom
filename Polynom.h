@@ -12,11 +12,11 @@ class Polynom
 		Polynom();//конструктор
 		Polynom (size_t N); //конструктор
 		~Polynom();//деструктор
-		float operator ()(double x); //значение в точке
-		float operator [](size_t i); 
-		/*float operator +(double left,double right); 
-		float operator -(double left,double right); 
-		float operator *(double left,double right);*/
+		double operator ()(double x); //значение в точке
+		double &operator [](size_t i); 
+		Polynom operator +(Polynom P); 
+		Polynom operator -(Polynom P); 
+		Polynom operator *(Polynom P); 
 };
 
 #endif //_POLYNOM_H_
