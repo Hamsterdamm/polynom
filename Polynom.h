@@ -16,7 +16,7 @@ class Polynom
 		Polynom (size_t N); //конструктор
 		~Polynom();//деструктор
 		double operator ()(double x); //значение в точке
-		double &operator [](size_t i); 
+		double &operator [](size_t i);
 		Polynom operator +(const Polynom& P); 
 		Polynom operator -(const Polynom& P); 
 		Polynom operator *(const Polynom& P); 

@@ -2,13 +2,11 @@
 #include <cmath>
 #include "Polynom.h"
 
-//описываем класс Полином
+Polynom::Polynom (){}//конструктор класса Полином
 
-Polynom::Polynom (){}//конструктор
+Polynom::Polynom(const Polynom& P):number(P.number), ptrcoefArr(nullptr) {}//копирующий конструктор
 
-Polynom::Polynom(const Polynom& P):number(P.number), ptrcoefArr(nullptr) {}
-
-Polynom::Polynom (size_t N):number(N)//конструктор
+Polynom::Polynom (size_t N):number(N)//конструктор от размерности полинома
 {
 	ptrcoefArr=new double [number]; //создаем пустой массив коэффициентов
 
@@ -19,30 +17,33 @@ Polynom::Polynom (size_t N):number(N)//конструктор
 	}
 }
 
-Polynom::Polynom (size_t N, double* ptrArr):number(N),ptrcoefArr(ptrArr)//конструктор для производной
-{
-}
+Polynom::Polynom(size_t N, double* ptrArr) :number(N), ptrcoefArr(ptrArr) {}//конструктор для результата операции
 
-Polynom::~Polynom()
+Polynom::~Polynom() //деструктор
 {
 	if (ptrcoefArr!= nullptr)
 		delete[] ptrcoefArr;
 }
 
-double Polynom::operator ()(double x) //считаем сумму
+double Polynom::operator ()(double x) //метод вычисления значения в точке x
 {
 	double Sum=0;
 
-	for (size_t i=0; i<number; i++) //заполняем пустой массив членов полинома
+	for (size_t i=0; i<number; i++) 
 	{
-	Sum+= ptrcoefArr[i] * pow(x,static_cast<double>(i)); //считаем сумму
+	Sum+= ptrcoefArr[i] * pow(x,static_cast<double>(i));
 			
 	}
 		
 	return Sum;
 }
 
-Polynom Polynom::operator +(const Polynom& P) 
+//double Polynom::&operator [](size_t i) 
+//{
+//
+//}
+
+Polynom Polynom::operator +(const Polynom& P) //оператор суммы
 {
 
 	ptrcoefSumArr=new double [number]; //создаем пустой массив коэффициентов
@@ -57,7 +58,7 @@ Polynom Polynom::operator +(const Polynom& P)
 	return Sum;
 }
 
-Polynom Polynom::operator -(const Polynom& P)
+Polynom Polynom::operator -(const Polynom& P) //оператор разности
 {
 
 	ptrcoefSumArr = new double[number]; //создаем пустой массив коэффициентов
