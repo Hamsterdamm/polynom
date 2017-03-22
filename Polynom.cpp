@@ -57,7 +57,21 @@ Polynom Polynom::operator +(const Polynom& P)
 	return Sum;
 }
 
-		//Polynom operator -(const Polynom& P); 
+Polynom Polynom::operator -(const Polynom& P)
+{
+
+	ptrcoefSumArr = new double[number]; //создаем пустой массив коэффициентов
+
+	for (size_t i = 0; i<number; i++) //заполняем массив коэффициентов
+	{
+		ptrcoefSumArr[i] = ptrcoefArr[i] - P.ptrcoefArr[i];
+	}
+
+	Polynom Sum = Polynom(number, ptrcoefSumArr);
+
+	return Sum;
+}
+
 		//Polynom operator *(const Polynom& P); 
 
 
