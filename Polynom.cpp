@@ -47,17 +47,15 @@ Polynom Polynom::operator +(const Polynom& P)
 
 	for (size_t i= 0; i<number; i++) //заполняем массив коэффициентов
 	{
-		ptrcoefSumArr[i]=ptrcoefArr[i] /*+ P[](i)*/;
+		ptrcoefSumArr[i]=ptrcoefArr[i] +P.ptrcoefArr[i];
 	}
 
-	Polynom Diff = Polynom(number, ptrcoefDiffArr);
+	Polynom Sum = Polynom(number, ptrcoefSumArr);
 
 	if (ptrcoefSumArr!= nullptr)
 	delete[] ptrcoefSumArr;
 
-	return Diff;
-
-
+	return Sum;
 }
 
 		//Polynom operator -(const Polynom& P); 
