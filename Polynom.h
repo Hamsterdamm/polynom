@@ -5,7 +5,6 @@ class Polynom
 {
 	private: 
 		size_t number;
-		double Sum; //переменные для размерности полинома и значения суммы
 		double* ptrcoefArr; //указатель на массив коэффициентов
 		double* ptrcoefDiffArr; //указатель на массив коэффициентов производной
 		Polynom::Polynom (size_t N, double* ptrcoefDiffArr);
@@ -16,9 +15,9 @@ class Polynom
 		~Polynom();//деструктор
 		double operator ()(double x); //значение в точке
 		double &operator [](size_t i); 
-		Polynom operator +(Polynom P); 
-		Polynom operator -(Polynom P); 
-		Polynom operator *(Polynom P); 
+		Polynom operator +(const Polynom& P); 
+		Polynom operator -(const Polynom& P); 
+		Polynom operator *(const Polynom& P); 
 		Polynom diff();
 };
 

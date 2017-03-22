@@ -29,7 +29,7 @@ Polynom::~Polynom()
 
 double Polynom::operator ()(double x) //считаем сумму
 {
-	Sum=0;
+	double Sum=0;
 
 	for (size_t i=0; i<number; i++) //заполняем пустой массив членов полинома
 	{
