@@ -2,12 +2,8 @@
 #include <cmath>
 #include "Polynom.h"
 
-
-
-
 int main ()
 {
-
 	size_t N;
 	float x;
 	float SUM;
