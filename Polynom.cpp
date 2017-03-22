@@ -38,6 +38,21 @@ double Polynom::operator ()(double x) //метод вычисления значения в точке x
 	return Sum;
 }
 
+double & Polynom::operator[](size_t i)
+{
+	// TODO: вставьте здесь оператор return
+}
+
+std::ostream & Polynom::operator«(std::ostream & out)
+{
+	// TODO: вставьте здесь оператор return
+}
+
+std::istream & Polynom::operator»(std::istream & in)
+{
+	// TODO: вставьте здесь оператор return
+}
+
 //double Polynom::&operator [](size_t i) 
 //{
 //
@@ -73,7 +88,10 @@ Polynom Polynom::operator -(const Polynom& P) //оператор разности
 	return Sum;
 }
 
-		//Polynom operator *(const Polynom& P); 
+Polynom Polynom::operator*(const Polynom & P)
+{
+	return Polynom();
+}
 
 
 Polynom Polynom::diff()
