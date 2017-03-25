@@ -1,7 +1,7 @@
 #ifndef _POLYNOM_H_
 #define _POLYNOM_H_
 
-double* ptrcoefSumArr;
+//double* ptrcoefSumArr;
 
 class Polynom
 {

@@ -40,7 +40,7 @@ double Polynom::operator ()(double x) //метод вычисления значения в точке x
 
 double & Polynom::operator[](size_t i)
 {
-	// TODO: вставьте здесь оператор return
+	return ptrcoefArr[i];
 }
 
 std::ostream & Polynom::operator«(std::ostream & out)
@@ -53,22 +53,19 @@ std::istream & Polynom::operator»(std::istream & in)
 	// TODO: вставьте здесь оператор return
 }
 
-//double Polynom::&operator [](size_t i) 
-//{
-//
-//}
+
 
 Polynom Polynom::operator +(const Polynom& P) //оператор суммы
 {
 
-	ptrcoefSumArr=new double [number]; //создаем пустой массив коэффициентов
+	double* ptrcoefTmpArr=new double [number]; //создаем пустой массив коэффициентов
 
 	for (size_t i= 0; i<number; i++) //заполняем массив коэффициентов
 	{
-		ptrcoefSumArr[i]=ptrcoefArr[i] +P.ptrcoefArr[i];
+		ptrcoefTmpArr[i]=ptrcoefArr[i] +P.ptrcoefArr[i];
 	}
 
-	Polynom Sum = Polynom(number, ptrcoefSumArr);
+	Polynom Sum = Polynom(number, ptrcoefTmpArr);
 
 	return Sum;
 }
@@ -76,14 +73,14 @@ Polynom Polynom::operator +(const Polynom& P) //оператор суммы
 Polynom Polynom::operator -(const Polynom& P) //оператор разности
 {
 
-	ptrcoefSumArr = new double[number]; //создаем пустой массив коэффициентов
+	double* ptrcoefTmpArr = new double[number]; //создаем пустой массив коэффициентов
 
 	for (size_t i = 0; i<number; i++) //заполняем массив коэффициентов
 	{
-		ptrcoefSumArr[i] = ptrcoefArr[i] - P.ptrcoefArr[i];
+		ptrcoefTmpArr[i] = ptrcoefArr[i] - P.ptrcoefArr[i];
 	}
 
-	Polynom Sum = Polynom(number, ptrcoefSumArr);
+	Polynom Sum = Polynom(number, ptrcoefTmpArr);
 
 	return Sum;
 }
@@ -97,14 +94,15 @@ Polynom Polynom::operator*(const Polynom & P)
 Polynom Polynom::diff()
 {
 	size_t num(number);
-	ptrcoefDiffArr=new double [num]; //создаем пустой массив коэффициентов
+	double* ptrcoefTmpArr = new double[number]; //создаем пустой массив коэффициентов
+	//ptrcoefDiffArr=new double [num]; //создаем пустой массив коэффициентов
 
 	for (size_t i= 1; i<num; i++) //заполняем массив коэффициентов
 	{
-		ptrcoefDiffArr[i-1]=ptrcoefArr[i] * i;
+		ptrcoefTmpArr[i-1]=ptrcoefArr[i] * i;
 	}
 
-	Polynom Diff = Polynom(num, ptrcoefDiffArr);
+	Polynom Diff = Polynom(num, ptrcoefTmpArr);
 
 	return Diff;
 }
