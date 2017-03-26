@@ -8,7 +8,6 @@ class Polynom
 	private: 
 		size_t number;
 		double* ptrcoefArr; //указатель на массив коэффициентов
-		double* ptrcoefDiffArr; //указатель на массив коэффициентов производной
 		Polynom::Polynom (size_t N, double* ptrArr);
 
 	public:

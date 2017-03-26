@@ -4,7 +4,11 @@
 
 Polynom::Polynom (){}//конструктор класса Полином
 
-Polynom::Polynom(const Polynom& P):number(P.number), ptrcoefArr(nullptr) {}//копирующий конструктор
+Polynom::Polynom(const Polynom& P):number(P.number), ptrcoefArr(nullptr) {
+	ptrcoefArr = new(std::nothrow) double(number);
+
+
+}//копирующий конструктор
 
 Polynom::Polynom (size_t N):number(N)//конструктор от размерности полинома
 {
