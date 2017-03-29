@@ -11,13 +11,16 @@ class Polynom
 		Polynom::Polynom (size_t N, double* ptrArr);
 
 	public:
-		Polynom();//конструктор
+		Polynom();
+		Polynom(const Polynom & P);
+		//конструктор
+
 		Polynom (size_t N); //конструктор
 		~Polynom();//деструктор
 		double operator ()(double x); //значение в точке
 		double &operator [](size_t i);
-		std::ostream& operator«(std::ostream& out);
-		std::istream& operator»(std::istream& in);
+		std::ostream& operator<<(std::ostream& out);
+		std::istream& operator>>(std::istream& in);
 		Polynom operator +(const Polynom& P); 
 		Polynom operator -(const Polynom& P); 
 		Polynom operator *(const Polynom& P); 
