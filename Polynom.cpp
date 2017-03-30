@@ -32,7 +32,7 @@ Polynom::~Polynom() //деструктор
 		delete[] ptrcoefArr;
 }
 
-double & Polynom::operator ()(double x) //метод вычисления значения в точке x
+double Polynom::operator ()(double x) //метод вычисления значения в точке x
 {
 	double Sum=0;
 
@@ -50,13 +50,13 @@ double & Polynom::operator[](size_t i)
 	return ptrcoefArr[i];
 }
 
-std::ostream & Polynom::operator<<(std::ostream & out)
+std::ostream Polynom::operator<<(std::ostream & out)
 {
 	// TODO: вставьте здесь оператор return
 	return std::cout;
 }
 
-std::istream & Polynom::operator>>(std::istream & in)
+std::istream Polynom::operator>>(std::istream & in)
 {
 	// TODO: вставьте здесь оператор return
 	return std::cin;
@@ -64,7 +64,7 @@ std::istream & Polynom::operator>>(std::istream & in)
 
 
 
-Polynom & Polynom::operator +(const Polynom& P) //оператор суммы
+Polynom Polynom::operator +(const Polynom& P) //оператор суммы
 {
 
 	double* ptrcoefTmpArr=new double [number]; //создаем пустой массив коэффициентов
@@ -79,7 +79,7 @@ Polynom & Polynom::operator +(const Polynom& P) //оператор суммы
 	return Sum;
 }
 
-Polynom & Polynom::operator -(const Polynom& P) //оператор разности
+Polynom Polynom::operator -(const Polynom& P) //оператор разности
 {
 
 	double* ptrcoefTmpArr = new double[number]; //создаем пустой массив коэффициентов
@@ -94,7 +94,7 @@ Polynom & Polynom::operator -(const Polynom& P) //оператор разности
 	return Sum;
 }
 
-Polynom & Polynom::operator*(const Polynom & P)
+Polynom Polynom::operator*(const Polynom & P)
 {
 	return Polynom();
 }
