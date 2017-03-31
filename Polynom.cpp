@@ -14,15 +14,20 @@ Polynom::Polynom(const Polynom& P):number(P.number), ptrcoefArr(nullptr) {
 	
 }//копирующий конструктор
 
-Polynom::Polynom (size_t N):number(N)//конструктор от размерности полинома
+Polynom::Polynom (size_t N):number(N), ptrcoefArr(nullptr) //конструктор от размерности полинома
 {
 	ptrcoefArr=new double [number]; //создаем пустой массив коэффициентов
 
-	for (size_t i= 0; i<number; i++) //заполняем пустой массив коэффициентов
+	if (ptrcoefArr != nullptr)
 	{
-		std::cout<<"Введите коэффициент A"<<i<<std::endl;
-		std::cin>>ptrcoefArr[i];
+		for (size_t i= 0; i<number; i++) //заполняем пустой массив коэффициентов
+		{
+			ptrcoefArr[i]=0;
+			}
 	}
+	else
+		number = 0;
+
 }
 
 Polynom::Polynom(size_t N, double* ptrArr) :number(N), ptrcoefArr(ptrArr) {}//конструктор для результата операции
@@ -32,6 +37,11 @@ Polynom::~Polynom() //деструктор
 	if (ptrcoefArr!= nullptr)
 		delete[] ptrcoefArr;
 }
+
+size_t Polynom::GetPow()
+{
+	return number;
+};
 
 double Polynom::operator ()(double x) //метод вычисления значения в точке x
 {
@@ -47,6 +57,11 @@ double Polynom::operator ()(double x) //метод вычисления значения в точке x
 }
 
 double & Polynom::operator[](size_t i)
+{
+	return ptrcoefArr[i];
+}
+
+double & Polynom::operator[](size_t i) const
 {
 	return ptrcoefArr[i];
 }
@@ -99,18 +114,21 @@ Polynom Polynom::operator*(const Polynom & P)
 {
 	size_t m(number),n(P.number);
 	size_t number_new=m+n;
+
+	Polynom result(number_new);
+
 	double* ptrcoefTmpArr = new double[m+n];
 	for (size_t k=0; k<(number_new); k++)
 	{
 		for (size_t i=(std::max(1,static_cast<int>(k+1-n)));i<(std::min(k,m));i++)
 		{
-			ptrcoefTmpArr[k]+=ptrcoefArr[i]*P.ptrcoefArr[k+1-i];
+			result[k]+=this->ptrcoefArr[i]*P[k+1-i];
 		}
 	}
 
-	Polynom X = Polynom(number_new, ptrcoefTmpArr);
 
-	return X;
+
+	return result;
 }
 
 
