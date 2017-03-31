@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include "Polynom.h"
+#include <algorithm>
 
 Polynom::Polynom (){}//конструктор класса Полином
 
@@ -50,13 +51,13 @@ double & Polynom::operator[](size_t i)
 	return ptrcoefArr[i];
 }
 
-std::ostream Polynom::operator<<(std::ostream & out)
+std::ostream &Polynom::operator<<(std::ostream & out)
 {
 	// TODO: вставьте здесь оператор return
 	return std::cout;
 }
 
-std::istream Polynom::operator>>(std::istream & in)
+std::istream &Polynom::operator>>(std::istream & in)
 {
 	// TODO: вставьте здесь оператор return
 	return std::cin;
@@ -96,7 +97,20 @@ Polynom Polynom::operator -(const Polynom& P) //оператор разности
 
 Polynom Polynom::operator*(const Polynom & P)
 {
-	return Polynom();
+	size_t m(number),n(P.number);
+	size_t number_new=m+n;
+	double* ptrcoefTmpArr = new double[m+n];
+	for (size_t k=0; k<(number_new); k++)
+	{
+		for (size_t i=(std::max(1,static_cast<int>(k+1-n)));i<(std::min(k,m));i++)
+		{
+			ptrcoefTmpArr[k]+=ptrcoefArr[i]*P.ptrcoefArr[k+1-i];
+		}
+	}
+
+	Polynom X = Polynom(number_new, ptrcoefTmpArr);
+
+	return X;
 }
 
 
