@@ -1,9 +1,11 @@
 #include <iostream>
 #include <cmath>
 #include "Polynom.h"
+#include <locale.h>
 
 int main ()
 {
+	setlocale(LC_ALL,"RUS");
 	size_t N;
 	double x;
 	double SUM;
