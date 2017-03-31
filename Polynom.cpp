@@ -122,7 +122,7 @@ Polynom Polynom::operator*(const Polynom & P)
 	{
 		for (size_t i=(std::max(1,static_cast<int>(k+1-n)));i<(std::min(k,m));i++)
 		{
-			result[k]+=this->ptrcoefArr[i]*P[k+1-i];
+			result[k]+=ptrcoefArr[i]*P[k+1-i];
 		}
 	}
 
@@ -134,16 +134,12 @@ Polynom Polynom::operator*(const Polynom & P)
 
 Polynom Polynom::diff()
 {
-	size_t num(number);
-	double* ptrcoefTmpArr = new double[number]; //создаем пустой массив коэффициентов
-	//ptrcoefDiffArr=new double [num]; //создаем пустой массив коэффициентов
+	Polynom result(number-1);
 
-	for (size_t i= 1; i<num; i++) //заполняем массив коэффициентов
+	for (size_t i= 1; i<number; i++) //заполняем массив коэффициентов
 	{
-		ptrcoefTmpArr[i-1]=ptrcoefArr[i] * i;
+		result[i-1]=ptrcoefArr[i] * i;
 	}
 
-	Polynom Diff = Polynom(num, ptrcoefTmpArr);
-
-	return Diff;
+	return result;
 }
