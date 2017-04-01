@@ -1,117 +1,116 @@
 #include <iostream>
 #include <cmath>
 #include "Polynom.h"
+#include <algorithm>
 
-Polynom::Polynom (){}//конструктор класса Полином
+Polynom::Polynom (){} //конструктор по умолчанию для класса Полином
 
-Polynom::Polynom(const Polynom& P):number(P.number), ptrcoefArr(nullptr) {
-	ptrcoefArr = new(std::nothrow) double(number);
-	if (ptrcoefArr != nullptr)
-		memcpy(ptrcoefArr, P.ptrcoefArr, number);
-	else
-		number = 0;
-	
-}//копирующий конструктор
-
-Polynom::Polynom (size_t N):number(N)//конструктор от размерности полинома
+Polynom::Polynom(size_t N) :number(N), ptrcoefArr(nullptr) //конструктор от размерности полинома
 {
-	ptrcoefArr=new double [number]; //создаем пустой массив коэффициентов
-
-	for (size_t i= 0; i<number; i++) //заполняем пустой массив коэффициентов
+	ptrcoefArr = new(std::nothrow) double[number]; //инициализируем пустой массив коэффициентов, в случае ошибки возвращаем нулевой указатель
+	if (ptrcoefArr != nullptr) //проверка на нулевой указатель
 	{
-		std::cout<<"Введите коэффициент A"<<i<<std::endl;
-		std::cin>>ptrcoefArr[i];
+		for (size_t i = 0; i<number; i++) //заполняем массив коэффициентов нулями
+		{
+			ptrcoefArr[i] = 0;
+		}
 	}
+	else
+		number = 0; //задаем размерность равной 0
+
 }
 
-Polynom::Polynom(size_t N, double* ptrArr) :number(N), ptrcoefArr(ptrArr) {}//конструктор для результата операции
+Polynom::Polynom(const Polynom& P):number(P.number), ptrcoefArr(nullptr) //копирующий конструктор
+{
+	ptrcoefArr = new(std::nothrow) double[number]; //инициализируем пустой массив коэффициентов, в случае ошибки возвращаем нулевой указатель
+	if (ptrcoefArr != nullptr)
+		memcpy(ptrcoefArr, P.ptrcoefArr, number); //копируем массив коэффициентов
+	else
+		number = 0; //задаем размерность равной 0
+}
 
 Polynom::~Polynom() //деструктор
 {
 	if (ptrcoefArr!= nullptr)
-		delete[] ptrcoefArr;
+		delete[] ptrcoefArr; //уничтожаем массив коэффициентов
 }
 
-double Polynom::operator ()(double x) //метод вычисления значения в точке x
+size_t Polynom::GetPow() //метод получения размерности (степени) полинома
 {
-	double Sum=0;
+	return number;
+};
 
-	for (size_t i=0; i<number; i++) 
+double Polynom::operator ()(double x) //оператор вычисления значения в точке x
+{
+	double result =0; //инициализация нулем переменной для хранения суммы членов полинома
+
+	for (size_t i = 0; i < number; i++)
 	{
-	Sum+= ptrcoefArr[i] * pow(x,static_cast<double>(i));
-			
+		result += ptrcoefArr[i] * pow(x, static_cast<double>(i)); //суммируем члены полинома при х=...
 	}
-		
-	return Sum;
+
+	return result;
 }
 
-double & Polynom::operator[](size_t i)
+double & Polynom::operator[](size_t i) //оператор получения значения коэффициента полинома
 {
 	return ptrcoefArr[i];
 }
 
-std::ostream Polynom::operator<<(std::ostream & out)
+double & Polynom::operator[](size_t i) const //константный оператор получения значения коэффициента полинома
 {
-	// TODO: вставьте здесь оператор return
-	return std::cout;
+	return ptrcoefArr[i];
 }
-
-std::istream Polynom::operator>>(std::istream & in)
-{
-	// TODO: вставьте здесь оператор return
-	return std::cin;
-}
-
-
 
 Polynom Polynom::operator +(const Polynom& P) //оператор суммы
 {
+	Polynom result(number); //инициализация полинома-результата операции
 
-	double* ptrcoefTmpArr=new double [number]; //создаем пустой массив коэффициентов
-
-	for (size_t i= 0; i<number; i++) //заполняем массив коэффициентов
+	for (size_t i = 0; i<number; i++) //расчет коэффициентов
 	{
-		ptrcoefTmpArr[i]=ptrcoefArr[i] +P.ptrcoefArr[i];
+		result[i] = ptrcoefArr[i] + P[i];
 	}
 
-	Polynom Sum = Polynom(number, ptrcoefTmpArr);
-
-	return Sum;
+	return result;
 }
 
 Polynom Polynom::operator -(const Polynom& P) //оператор разности
 {
+	Polynom result(number); //инициализация полинома-результата операции
 
-	double* ptrcoefTmpArr = new double[number]; //создаем пустой массив коэффициентов
-
-	for (size_t i = 0; i<number; i++) //заполняем массив коэффициентов
+	for (size_t i = 0; i<number; i++) //расчет коэффициентов
 	{
-		ptrcoefTmpArr[i] = ptrcoefArr[i] - P.ptrcoefArr[i];
+		result[i] = ptrcoefArr[i] - P[i];
 	}
 
-	Polynom Sum = Polynom(number, ptrcoefTmpArr);
-
-	return Sum;
+	return result;
 }
 
-Polynom Polynom::operator*(const Polynom & P)
+Polynom Polynom::operator*(const Polynom & P) //оператор произведения полиномов
 {
-	return Polynom();
-}
+	size_t m(number), n(P.number), number_new = m + n; //инициализация размерностей полиномов
+	Polynom result(number_new); //инициализация полинома-результата операции
 
-
-Polynom Polynom::diff()
-{
-	size_t num(number);
-	double* ptrcoefTmpArr = new double[number]; //создаем пустой массив коэффициентов
-	//ptrcoefDiffArr=new double [num]; //создаем пустой массив коэффициентов
-
-	for (size_t i= 1; i<num; i++) //заполняем массив коэффициентов
+	for (size_t k=0; k<(number_new); k++) //расчет коэффициентов
 	{
-		ptrcoefTmpArr[i-1]=ptrcoefArr[i] * i;
+		for (size_t i=(std::max(1,static_cast<int>(k+1-n)));i<(std::min(k,m));i++)
+		{
+			result[k]+=ptrcoefArr[i]*P[k+1-i];
+		}
 	}
 
-	Polynom Diff = Polynom(num, ptrcoefTmpArr);
+	return result;
+}
 
-	return Diff;
+
+Polynom Polynom::diff() //метод дифференцирования полиномов
+{
+	Polynom result(number-1); //инициализация полинома-результата операции
+
+	for (size_t i= 1; i<number; i++) //расчет коэффициентов
+	{
+		result[i-1]=ptrcoefArr[i] * i;
+	}
+
+	return result;
 }
