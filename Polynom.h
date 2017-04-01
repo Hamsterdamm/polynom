@@ -11,22 +11,22 @@ class Polynom
 		Polynom::Polynom (size_t N, double* ptrArr);
 
 	public:
-		Polynom();
-		Polynom(const Polynom & P);
+		Polynom(); //конструктор по умолчанию дл€ класса ѕолином
+		Polynom(const Polynom & P); //копирующий конструктор
 		//конструктор
 
-		Polynom (size_t N); //конструктор
-		~Polynom();//деструктор
+		Polynom (size_t N); //конструктор от размерности полинома
+		~Polynom(); //деструктор
 		double operator ()(double x); //значение в точке
-		double & operator [](size_t i);
-		double & operator [](size_t i) const;
-		std::ostream &operator<<(std::ostream& out);
-		std::istream &operator>>(std::istream& in);
-		Polynom operator +(const Polynom& P); 
-		Polynom operator -(const Polynom& P); 
-		Polynom operator *(const Polynom& P); 
-		Polynom diff();
-		size_t GetPow();
+		double & operator [](size_t i); //оператор получени€ значени€ коэффициента полинома
+		double & operator [](size_t i) const; //константный оператор получени€ значени€ коэффициента полинома
+		//std::ostream &operator<<(std::ostream& out);
+		//std::istream &operator>>(std::istream& in);
+		Polynom operator +(const Polynom& P); //оператор суммы
+		Polynom operator -(const Polynom& P); //оператор разности
+		Polynom operator *(const Polynom& P); //оператор произведени€ полиномов
+		Polynom diff(); //метод дифференцировани€ полиномов
+		size_t GetPow(); //метод получени€ размерности (степени) полинома
 };
 
 #endif //_POLYNOM_H_
