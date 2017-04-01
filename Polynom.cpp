@@ -24,7 +24,11 @@ Polynom::Polynom(const Polynom& P):number(P.number), ptrcoefArr(nullptr) //копир
 {
 	ptrcoefArr = new(std::nothrow) double[number]; //инициализируем пустой массив коэффициентов, в случае ошибки возвращаем нулевой указатель
 	if (ptrcoefArr != nullptr)
-		memcpy(ptrcoefArr, P.ptrcoefArr, number); //копируем массив коэффициентов
+		for (size_t i = 0; i<number; i++) //заполняем массив коэффициентов нулями
+		{
+			ptrcoefArr[i] = P.ptrcoefArr[i];
+		}
+		//memcpy(ptrcoefArr, P.ptrcoefArr, number); //копируем массив коэффициентов
 	else
 		number = 0; //задаем размерность равной 0
 }
@@ -64,9 +68,9 @@ double & Polynom::operator[](size_t i) const //константный оператор получения зн
 
 Polynom Polynom::operator +(const Polynom& P) //оператор суммы
 {
-	Polynom result(number); //инициализация полинома-результата операции
+	Polynom result(std::max(number,P.number)); //инициализация полинома-результата операции
 
-	for (size_t i = 0; i<number; i++) //расчет коэффициентов
+	for (size_t i = 0; i<std::min(number, P.number); i++) //расчет коэффициентов
 	{
 		result[i] = ptrcoefArr[i] + P[i];
 	}
@@ -88,14 +92,14 @@ Polynom Polynom::operator -(const Polynom& P) //оператор разности
 
 Polynom Polynom::operator*(const Polynom & P) //оператор произведения полиномов
 {
-	size_t m(number), n(P.number), number_new = m + n; //инициализация размерностей полиномов
+	size_t m(number), n(P.number), number_new = m + n-1; //инициализация размерностей полиномов
 	Polynom result(number_new); //инициализация полинома-результата операции
 
 	for (size_t k=0; k<(number_new); k++) //расчет коэффициентов
 	{
-		for (size_t i=(std::max(1,static_cast<int>(k+1-n)));i<(std::min(k,m));i++)
+		for (size_t i=(std::max(0,static_cast<int>(k-n)));i<=(std::min(k,m));i++)
 		{
-			result[k]+=ptrcoefArr[i]*P[k+1-i];
+			result[k]+=ptrcoefArr[i]*P[k-i];
 		}
 	}
 
