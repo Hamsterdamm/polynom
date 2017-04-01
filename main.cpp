@@ -47,6 +47,7 @@ int main ()
 		std::cout << b[i] << "*x^" << i << '+';
 	}
 	std::cout << std::endl;
+	std::cout << std::endl;
 
 	Polynom sum( a + b);
 
@@ -74,6 +75,7 @@ int main ()
 		std::cout << mul[i] << "*x^" << i << '+';
 	}
 	std::cout << std::endl;
+	std::cout << std::endl;
 
 	Polynom der = a.diff();
 
@@ -82,6 +84,7 @@ int main ()
 	{
 		std::cout << der[i] << "*x^" << i << '+';
 	}
+	std::cout << std::endl;
 	std::cout << std::endl;
 
 	std::cout<<"Введите значение переменной x"<<std::endl;

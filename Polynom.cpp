@@ -92,12 +92,12 @@ Polynom Polynom::operator -(const Polynom& P) //оператор разности
 
 Polynom Polynom::operator*(const Polynom & P) //оператор произведения полиномов
 {
-	size_t m(number), n(P.number), number_new = m + n; //инициализация размерностей полиномов
+	size_t m(number), n(P.number), number_new = m + n-1; //инициализация размерностей полиномов
 	Polynom result(number_new); //инициализация полинома-результата операции
 
 	for (size_t k=0; k<(number_new); k++) //расчет коэффициентов
 	{
-		for (size_t i=(std::max(0,static_cast<int>(k-n)));i<(std::min(k,m));i++)
+		for (size_t i=(std::max(0,static_cast<int>(k-n)));i<=(std::min(k,m));i++)
 		{
 			result[k]+=ptrcoefArr[i]*P[k-i];
 		}
