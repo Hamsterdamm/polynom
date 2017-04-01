@@ -29,10 +29,6 @@ Polynom::Polynom(const Polynom& P):number(P.number), ptrcoefArr(nullptr) //копир
 		number = 0; //задаем размерность равной 0
 }
 
-
-
-Polynom::Polynom(size_t N, double* ptrArr) :number(N), ptrcoefArr(ptrArr) {} //конструктор для результата операции
-
 Polynom::~Polynom() //деструктор
 {
 	if (ptrcoefArr!= nullptr)
@@ -46,14 +42,14 @@ size_t Polynom::GetPow() //метод получения размерности (степени) полинома
 
 double Polynom::operator ()(double x) //оператор вычисления значения в точке x
 {
-	double Sum=0; //инициализация нулем переменной для хранения суммы членов полинома
+	double result =0; //инициализация нулем переменной для хранения суммы членов полинома
 
 	for (size_t i = 0; i < number; i++)
 	{
-		Sum += ptrcoefArr[i] * pow(x, static_cast<double>(i)); //суммируем члены полинома при х=...
+		result += ptrcoefArr[i] * pow(x, static_cast<double>(i)); //суммируем члены полинома при х=...
 	}
 
-	return Sum;
+	return result;
 }
 
 double & Polynom::operator[](size_t i) //оператор получения значения коэффициента полинома
@@ -66,21 +62,9 @@ double & Polynom::operator[](size_t i) const //константный оператор получения зн
 	return ptrcoefArr[i];
 }
 
-//std::ostream &Polynom::operator<<(std::ostream & out)
-//{
-//	// TODO: вставьте здесь оператор return
-//	return std::cout;
-//}
-//
-//std::istream &Polynom::operator>>(std::istream & in)
-//{
-//	// TODO: вставьте здесь оператор return
-//	return std::cin;
-//}
-
 Polynom Polynom::operator +(const Polynom& P) //оператор суммы
 {
-	Polynom result(number);
+	Polynom result(number); //инициализация полинома-результата операции
 
 	for (size_t i = 0; i<number; i++) //расчет коэффициентов
 	{
@@ -92,7 +76,7 @@ Polynom Polynom::operator +(const Polynom& P) //оператор суммы
 
 Polynom Polynom::operator -(const Polynom& P) //оператор разности
 {
-	Polynom result(number);
+	Polynom result(number); //инициализация полинома-результата операции
 
 	for (size_t i = 0; i<number; i++) //расчет коэффициентов
 	{

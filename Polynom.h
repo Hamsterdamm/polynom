@@ -8,7 +8,6 @@ class Polynom
 	private: 
 		size_t number;
 		double* ptrcoefArr; //указатель на массив коэффициентов
-		Polynom::Polynom (size_t N, double* ptrArr);
 
 	public:
 		Polynom(); //конструктор по умолчанию для класса Полином
@@ -20,8 +19,6 @@ class Polynom
 		double operator ()(double x); //значение в точке
 		double & operator [](size_t i); //оператор получения значения коэффициента полинома
 		double & operator [](size_t i) const; //константный оператор получения значения коэффициента полинома
-		//std::ostream &operator<<(std::ostream& out);
-		//std::istream &operator>>(std::istream& in);
 		Polynom operator +(const Polynom& P); //оператор суммы
 		Polynom operator -(const Polynom& P); //оператор разности
 		Polynom operator *(const Polynom& P); //оператор произведения полиномов
