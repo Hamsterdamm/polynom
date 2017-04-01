@@ -80,39 +80,31 @@ double & Polynom::operator[](size_t i) const //константный оператор получения зн
 
 Polynom Polynom::operator +(const Polynom& P) //оператор суммы
 {
+	Polynom result(number);
 
-	double* ptrcoefTmpArr=new double [number]; //создаем пустой массив коэффициентов
-
-	for (size_t i= 0; i<number; i++) //заполняем массив коэффициентов
+	for (size_t i = 0; i<number; i++) //расчет коэффициентов
 	{
-		ptrcoefTmpArr[i]=ptrcoefArr[i] +P.ptrcoefArr[i];
+		result[i] = ptrcoefArr[i] + P[i];
 	}
 
-	Polynom Sum = Polynom(number, ptrcoefTmpArr);
-
-	return Sum;
+	return result;
 }
 
 Polynom Polynom::operator -(const Polynom& P) //оператор разности
 {
+	Polynom result(number);
 
-	double* ptrcoefTmpArr = new double[number]; //создаем пустой массив коэффициентов
-
-	for (size_t i = 0; i<number; i++) //заполняем массив коэффициентов
+	for (size_t i = 0; i<number; i++) //расчет коэффициентов
 	{
-		ptrcoefTmpArr[i] = ptrcoefArr[i] - P.ptrcoefArr[i];
+		result[i] = ptrcoefArr[i] - P[i];
 	}
 
-	Polynom Sum = Polynom(number, ptrcoefTmpArr);
-
-	return Sum;
+	return result;
 }
 
 Polynom Polynom::operator*(const Polynom & P) //оператор произведения полиномов
 {
-	size_t m(number),n(P.number); //
-	size_t number_new=m+n;
-
+	size_t m(number), n(P.number), number_new = m + n; //инициализация размерностей полиномов
 	Polynom result(number_new); //инициализация полинома-результата операции
 
 	for (size_t k=0; k<(number_new); k++) //расчет коэффициентов
