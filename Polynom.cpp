@@ -97,7 +97,7 @@ Polynom Polynom::operator*(const Polynom & P) //оператор произведения полиномов
 
 	for (size_t k=0; k<(number_new); k++) //расчет коэффициентов
 	{
-		for (size_t i=(std::max(0,static_cast<int>(k-n)));i<=(std::min(k,m));i++)
+		for (size_t i=(std::max<size_t>(0,k-n));i<=(std::min(k,m));i++)
 		{
 			result[k]+=ptrcoefArr[i]*P[k-i];
 		}
