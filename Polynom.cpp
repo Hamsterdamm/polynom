@@ -24,11 +24,11 @@ Polynom::Polynom(const Polynom& P):number(P.number), ptrcoefArr(nullptr) //копир
 {
 	ptrcoefArr = new(std::nothrow) double[number]; //инициализируем пустой массив коэффициентов, в случае ошибки возвращаем нулевой указатель
 	if (ptrcoefArr != nullptr)
-		for (size_t i = 0; i<number; i++) //заполняем массив коэффициентов нулями
-		{
-			ptrcoefArr[i] = P.ptrcoefArr[i];
-		}
-		//memcpy(ptrcoefArr, P.ptrcoefArr, number); //копируем массив коэффициентов
+		//for (size_t i = 0; i<number; i++) //заполняем массив коэффициентов нулями
+		//{
+		//	ptrcoefArr[i] = P.ptrcoefArr[i];
+		//}
+		memcpy(ptrcoefArr, P.ptrcoefArr, number*sizeof(double)); //копируем массив коэффициентов
 	else
 		number = 0; //задаем размерность равной 0
 }
